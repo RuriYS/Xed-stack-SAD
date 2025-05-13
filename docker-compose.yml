@@ -1,0 +1,16 @@
+name: syncease
+
+services:
+  app:
+   image: sad/syncease
+   volumes:
+     - ./syncease:/var/www/html
+   ports:
+     - 32768:80
+  db:
+    image: mysql
+    environment:
+      MYSQL_ROOT_PASSWORD: rootpass
+      MYSQL_DATABASE: syncease_db
+    volumes:
+      - ./db.sql:/docker-entrypoint-initdb.d/init.sql
